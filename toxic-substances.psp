@@ -17,7 +17,7 @@
       <ul>
         <li><a href="home.html">Home</a></li>
         <li><a href="graph-check.html">graph-check</a></li>
-        <li class="thispage"><a href="toxic-substances.psp?Organism=hoi&Substance=doei" class="thispage">toxic substances</a></li>
+        <li class="thispage"><a href="toxic-substances.psp?Organism=hoi&Substance=doei" class="thispage">substances</a></li>
         <li><a href="faq.html">faq</a></li>
         <li><a href="#">contact</a></li>
       </ul>
@@ -82,7 +82,7 @@ organism = form["Organism"]
 									<li>
 										<form 
 										action="toxic-substances.psp">
-										toxic-substance: <input type="text" name="Substance" value="">
+										substance: <input type="text" name="Substance" value="">
 										Organism: <input type="text" name="Organism" value="">
 										<input type="submit" value="Submit">
 										</form>
