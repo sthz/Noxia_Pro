@@ -64,7 +64,7 @@ organism = form["Organism"]
 %>
 <%
 
-import mysqldb as con
+import MySQLDB as con
 
 form.has_key('Substance'and'Organism')
 TERM1 = '%s' %form['Substance']
