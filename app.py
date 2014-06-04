@@ -1,4 +1,4 @@
-#	Author	Jurriaan©
+#	Author	Jurriaan
 #	Date	04-06-14
 
 def index(organism, substance):
