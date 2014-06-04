@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Noxia Pro</title>
+<link href="styles/main.css" rel="stylesheet" type="text/css">
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/poiret-one:n4:default;poly:n4:default.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div id="wrapper">
+  <header id="top">
+    <h1>Noxia Pro</h1>
+    <nav id="mainnav">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li class="thispage"><a href="graph-check.psp" class="thispage">graph-check</a></li>
+        <li><a href="toxic-substances.psp?Organism=hoi&Substance=doei">substances</a></li>
+        <li><a href="faq.html">faq</a></li>
+        <li><a href="#">contact</a></li>
+      </ul>
+    </nav>
+
+
+<!-- <head> -->
+  <title>Graph | Sizing</title>
+
+  <!--
+  
+  <style type="text/css">
+    html, body {
+      font: 10pt arial;
+    }
+    #mygraph {
+	width: 1000px;
+	height: 600px;
+	border: 1px solid lightgray;
+	margin-left: 0%;
+    }
+  </style> 
+  
+  -->
+
+  <script type="text/javascript" src="/~bi2_pg4/NoxiaPro/dist/vis.js"></script>
+
+  <script type="text/javascript">
+    var nodes = null;
+    var edges = null;
+    var graph = null;
+
+    var DIR = 'img/soft-scraps-icons/';
+
+    function draw() {
+      // create people.
+      // value corresponds with the age of the person
+      nodes = [
+        {id: 1, value: 15, label: 'Calcium arsenate', title: 'Calcium arsenate (Substance)'},
+        {id: 2, value: 30, label: 'C.Elegans', title: 'C. Elegeans (Organism)'},
+        {id: 3, value: 15, label: 'Cocaïne', title: 'Cocaïne (Substance)'},
+        {id: 4, value: 30, label: 'Danio rerio', title: 'Danio rerio (Organism)'},
+        {id: 5, value: 15, label: 'Furan', title: 'Furan (Substance)'},
+        {id: 6, value: 30, label: 'd. discoideum', title: 'd. discoideum (Organism)'},
+        {id: 7, value: 15, label: 'Sodium Chromate', title: 'Sodium Chromate (Substance)'},
+        {id: 8, value: 15, label: 'Acrylamide', title: 'Acrylamide (Substance)'},
+        {id: 9, value: 15, label: 'Tetraethyllead', title: 'Tetraethyllead (Substance)'},
+        {id: 10, value: 15, label: 'Diethyl sulphate', title: 'Diethyl sulphate (Substance)'}
+      ];
+
+      // create connections.
+      // value corresponds with the amount of contact between two people
+      edges = [
+        {from: 2, to: 8, value: 3, title: '3 Matching publications'},
+        {from: 2, to: 9, value: 5, title: '5 Matching publications'},
+        {from: 2, to: 10,value: 7, title: '1 Matching publications'},
+		{from: 2, to: 6, value: 3, title: '3 Matching publications'},
+        {from: 4, to: 6, value: 8, title: '8 Matching publications'},
+        {from: 5, to: 7, value: 2, title: '2 Matching publications'},
+        {from: 4, to: 5, value: 5, title: '1 Matching publications'},
+        {from: 9, to: 10,value: 2, title: '2 Matching publications'},
+        {from: 2, to: 3, value: 6, title: '6 Matching publications'},
+        {from: 3, to: 1, value: 4, title: '4 Matching publications'},
+        {from: 5, to: 3, value: 7, title: 'Matching publications'},
+        {from: 2, to: 7, value: 4, title: 'Matching publications'}
+      ];
+
+      // Instantiate our graph object.
+      var container = document.getElementById('mygraph');
+      var data = {
+        nodes: nodes,
+        edges: edges
+      };
+      var options = {
+        nodes: {
+          shape: 'dot',
+		  color: '#10BB68'
+        },
+        edges: {
+          color: '#10BB68'
+        }
+      };
+      graph = new vis.Graph(container, data, options);
+    }
+  </script>
+</header>
+
+<body onload="draw()">
+<div id="mygraph"></div>
+
+<h2>Substances</h2>
+<ul>
+	<li>
+	<form 
+	action="graph_information_generate.py">
+	Add substance: <input type="text" name="Substance" value="">
+	<input type="submit" value="Submit">
+	</form>
+	</li>
+</ul>
+<h2>Publications</h2>
+<table border="1" style="width:200px">
+<tr>
+  <td>title</td>
+  <td>authors</td> 
+  <td>source</td>
+  <td>abstract</td>
+  <td>date</td>
+</tr>
+<tr>
+  <td>test</td>
+  <td>Test</td> 
+  <td>test</td>
+  <td>test</td>
+  <td>test</td>
+</tr>
+<tr>
+  <td>test</td>
+  <td>Test</td> 
+  <td>test</td>
+  <td>test</td>
+  <td>test</td>
+</tr>
+
+</table>
+
+<footer>©Jurriaan Jansen 2014</footer>
+</div>
+</body>
+</html>
