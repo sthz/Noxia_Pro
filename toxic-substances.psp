@@ -17,7 +17,7 @@
       <ul>
         <li><a href="home.html">Home</a></li>
         <li><a href="graph-check.psp">graph-check</a></li>
-        <li class="thispage"><a href="toxic-substances.psp?Organism=hoi&Substance=doei" class="thispage">substances</a></li>
+        <li class="thispage"><a href="toxic-substances.psp?Organism=&Substance=" class="thispage">substances</a></li>
         <li><a href="faq.html">faq</a></li>
         <li><a href="#">contact</a></li>
       </ul>
@@ -42,8 +42,8 @@
 								        	<th scope="col" class="rounded-company">pubmed_ID</th>
 								            <th scope="col" class="rounded-q1">author</th>
 								            <th scope="col" class="rounded-q2">date</th>
-								            <th scope="col" class="rounded-q3">country</th>
 								            <th scope="col" class="rounded-q4">titel</th>
+											<th scope="col" class="rounded-q4">abstract</th>
 								        </tr>
 								    </thead>
 								        <tfoot>
@@ -69,7 +69,7 @@ import MySQLdb as con
 form.has_key('Substance'and'Organism')
 TERM1 = '%s' %form['Substance']
 TERM2 = '%s'%form['Organism']
-TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+TERMS = '((' +TERM1 + ') AND'+TERM2 +')'
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
 handle = Entrez.egquery(term=TERMS)
@@ -80,10 +80,8 @@ for row in record["eGQueryResult"]:
 		 
 handle = Entrez.esearch(db="pubmed", term=TERMS, retmax=463)
 record = Entrez.read(handle)
-idlist = record["IdList"]
 
-handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline",
-						   retmode="text")
+handle = Entrez.efetch(db="pubmed", id=record["IdList"], rettype="medline")
 records = Medline.parse(handle)
 records = list(records)
 
@@ -93,6 +91,11 @@ for record in records:
 	source= record.get("SO", "?")
 	abstract= record.get("AB", "?")
 	date= record.get("DA", "?")
+	print("title:", record.get("TI", "?"))
+    print("authors:", record.get("AU", "?"))
+    print("source:", record.get("SO", "?"))
+    print("abstract:", record.get("AB", "?"))
+    print("date:", record.get("DA", "?"))
  
 
 # Open database connection
@@ -102,22 +105,24 @@ passwd="blaat1234", # your password
 db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
-cursor = dataB.cursor()
+cursor1 = dataB.cursor()
+cursor2 = dataB.cursor()
+cursor3 = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publication (title, authors[0], magazine, year, abstract) VALUES 			('"+title+"', '"+','.join(authors)+"', '"+source+"', '"+date+"', '"+abstract+"')")
-stat2 = ("INSERT INTO organisms VALUES (%s) ", (TERM2))
-stat3 = ("INSERT INTO substances VALUES (%s) ", (TERM1))
+stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES (001, '"+title+"', ',' join.authors(), '"+source+"', '"+date+"', '"+abstract+"')")
+stat2 = ("INSERT INTO organisms VALUES (organism) ", (TERM2))
+stat3 = ("INSERT INTO substances VALUES (substance) ", (TERM1))
 
-if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
+if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor2) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor2):
 	 print ('Zit al in de database')
 else:
 	 print ('Zit nog niet in de database.')
 	 try:
 	   # Execute the SQL command
-		  cursor.execute(stat1)
-		  cursor.execute(stat2)
-		  cursor.execute(stat3)
+		  cursor1.execute(stat1)
+		  cursor2.execute(stat2)
+		  cursor3.execute(stat3)
 
 	   # Commit your changes in the database
 		  dataB.commit()
@@ -128,7 +133,9 @@ else:
 	   # Rollback in case there is any error
 		  dataB.rollback()
 # disconnect from server
-cursor.close()
+cursor1.close()
+cursor2.close()
+cursor3.close()
 dataB.close()
 %>
 <%=app.index(organism, substance)%>
@@ -152,7 +159,7 @@ dataB.close()
 								<ul>
 									<li>
 										<form 
-										action="toxic-substances.psp">
+										action="toxic-substances.psp" method="post">
 										Substance: <input type="text" name="Substance" value="">
 										Organism: <input type="text" name="Organism" value="">
 										<input type="submit" value="Submit">
@@ -173,7 +180,7 @@ dataB.close()
   
 
  
-  <footer>©Jurriaan Jansen 2014</footer>
+  <footer>©h4X0rs</footer>
 </div>
 </body>
 </html>
