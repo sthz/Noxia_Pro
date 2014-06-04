@@ -96,13 +96,13 @@ for record in records:
 	print("")
 
 # Open database connection
-db=con.connect(host="cytosine.nl", # your host, usually localhost
+dataB=con.connect(host="cytosine.nl", # your host, usually localhost
 user="bi2_pg4", # your username
 passwd="blaat1234", # your password
-database="bi2_pg4") # name of the data base
+db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
-cursor = database.cursor()
+cursor = db.cursor()
 	
 # Prepare SQL query to UPDATE required records
 stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALUES 			('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstact+"')")
@@ -120,16 +120,16 @@ else:
 		  cursor.execute(stat3)
 
 	   # Commit your changes in the database
-		  database.commit()
+		  db.commit()
 
 	 except pymysql.Error:
 		  print ("ERROR IN CONNECTION")
 	 except:
 	   # Rollback in case there is any error
-		  database.rollback()
+		  db.rollback()
 # disconnect from server
-cursor.close
-database.close()
+cursor.close()
+db.close()
 %>
 <%=app.index(organism, substance)%>
 								    </tbody>
