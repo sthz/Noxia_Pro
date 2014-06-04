@@ -55,7 +55,7 @@
 								    <tbody>
 <%
 import sys
-sys.path.append('/home/bi2_pg4/public_html/Noxia_Pro/')
+sys.path.append('/home/bi2_pg4/public_html/NoxiaPro/')
 import app
 substance = form["Substance"]
 organism = form["Organism"]
