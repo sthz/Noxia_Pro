@@ -40,9 +40,13 @@
   </style> 
   
   -->
+<%  
+ test = <h1> Test </h1>
+%>
+
+<%=test%>
 
   <script type="text/javascript" src="/~bi2_pg4/NoxiaPro/dist/vis.js"></script>
-
   <script type="text/javascript">
     var nodes = null;
     var edges = null;
@@ -102,6 +106,11 @@
       graph = new vis.Graph(container, data, options);
     }
   </script>
+  
+  
+
+  
+  
 </header>
 
 <body onload="draw()">
