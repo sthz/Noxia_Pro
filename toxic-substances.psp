@@ -64,7 +64,7 @@ organism = form["Organism"]
 %>
 <%
 
-import pymysql
+import mysqldb as con
 
 form.has_key('Substance'and'Organism')
 TERM1 = '%s' %form['Substance']
@@ -96,7 +96,7 @@ for record in records:
 	print("")
 
 # Open database connection
-db=pymysql.connect(host="cytosine.nl", # your host, usually localhost
+db=con.connect(host="cytosine.nl", # your host, usually localhost
 user="bi2_pg4", # your username
 passwd="blaat1234", # your password
 database="bi2_pg4") # name of the data base
