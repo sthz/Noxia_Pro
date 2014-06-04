@@ -69,7 +69,7 @@ import MySQLdb as con
 form.has_key('Substance'and'Organism')
 TERM1 = '%s' %form['Substance']
 TERM2 = '%s'%form['Organism']
-TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+TERMS = '((' +TERM1 + ') AND'+TERM2 +')'
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
 handle = Entrez.egquery(term=TERMS)
@@ -152,7 +152,7 @@ dataB.close()
 								<ul>
 									<li>
 										<form 
-										action="toxic-substances.psp">
+										action="toxic-substances.psp" method="post">
 										Substance: <input type="text" name="Substance" value="">
 										Organism: <input type="text" name="Organism" value="">
 										<input type="submit" value="Submit">
