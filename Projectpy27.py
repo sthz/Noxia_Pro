@@ -1,10 +1,10 @@
-# Janneke©
+
 from Bio import Entrez
 from Bio import Medline
-import MySQLdb
+import pymysql
 
-TERM1 = raw_input("Geef de stof op: ")
-TERM2 = raw_input("Geef het organisme op: ")
+TERM1 = input("Geef de stof op: ")
+TERM2 = input("Geef het organisme op: ")
 TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
@@ -32,34 +32,47 @@ for record in records:
     print("")
 
 # Open database connection
-db = MySQLdb.connect(host="localhost", # your host, usually localhost
+db = pymysql.connect(host="localhost", # your host, usually localhost
                      user="bi2_pg4", # your username
                       passwd="blaat1234", # your password
                       db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
-
-# Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALUES ('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstact+"')");
-stat2 = ("INSERT INTO organisms VALUES (%s) ", (TERM2));
-stat3 = ("INSERT INTO substances VALUES (%s) ", (TERM1));
-
-try:
-   # Execute the SQL command
-    cursor.execute(stat1)
-    cursor.execute(stat1)
-    cursor.execute(stat1)
-
-   # Commit your changes in the database
-    db.commit()
     
+# Prepare SQL query to UPDATE required records
+stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALUES ('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstact+"')")
+stat2 = ("INSERT INTO organisms VALUES (%s) ", (TERM2))
+stat3 = ("INSERT INTO substances VALUES (%s) ", (TERM1))
 
-except MySQLdb.Error:
-    print ("ERROR IN CONNECTION")
-except:
-   # Rollback in case there is any error
-   db.rollback()
+if exists(("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor) and exists(("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
+     print ('Zit al in de database')
+else:
+     print ('Zit nog niet in de database.')
+     try:
+       # Execute the SQL command
+          cursor.execute(stat1)
+          cursor.execute(stat2)
+          cursor.execute(stat3)
+
+       # Commit your changes in the database
+          db.commit()
+
+     except pymysql.Error:
+          print ("ERROR IN CONNECTION")
+     except:
+       # Rollback in case there is any error
+          db.rollback()
+
+   
+
 
 # disconnect from server
+cursor.close
 db.close()
+
+def exists(query, cursor):
+     for result in cursor.execute(query):
+          return result.with_rows
+
+
