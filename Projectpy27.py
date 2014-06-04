@@ -32,17 +32,13 @@ for record in records:
     print("")
 
 # Open database connection
-<<<<<<< HEAD
-db = pymysql.connect(host="localhost", # your host, usually localhost
-=======
-db = pymysql.connect(host="127.0.0.1", # your host, usually localhost
->>>>>>> 8f2257c040d7aa58d66bf9f5e3d06cf42be843f6
-                     user="bi2_pg4", # your username
-                      passwd="blaat1234", # your password
-                      db="bi2_pg4") # name of the data base
+db=pymysql.connect(host="cytosine.nl", # your host, usually localhost
+user="bi2_pg4", # your username
+passwd="blaat1234", # your password
+database="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
-cursor = db.cursor()
+cursor = database.cursor()
     
 # Prepare SQL query to UPDATE required records
 stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALUES ('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstact+"')")
@@ -60,20 +56,20 @@ else:
           cursor.execute(stat3)
 
        # Commit your changes in the database
-          db.commit()
+          database.commit()
 
      except pymysql.Error:
           print ("ERROR IN CONNECTION")
      except:
        # Rollback in case there is any error
-          db.rollback()
+          database.rollback()
 
    
 
 
 # disconnect from server
 cursor.close
-db.close()
+database.close()
 
 def exists(query, cursor):
      for result in cursor.execute(query):
