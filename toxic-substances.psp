@@ -40,10 +40,15 @@
 								    <thead>
 								    	<tr>
 								        	<th scope="col" class="rounded-company">pubmed_ID</th>
+											<td>ID</td>
 								            <th scope="col" class="rounded-q1">author</th>
+											<td>authors</td>
 								            <th scope="col" class="rounded-q2">date</th>
-								            <th scope="col" class="rounded-q3">country</th>
+											<td>date</td>
 								            <th scope="col" class="rounded-q4">titel</th>
+											<td>title</td>
+											<th scope="col" class="rounded-q4">abstract</th>
+											<td>abstract</td>
 								        </tr>
 								    </thead>
 								        <tfoot>
