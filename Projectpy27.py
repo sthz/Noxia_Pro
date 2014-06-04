@@ -32,7 +32,11 @@ for record in records:
     print("")
 
 # Open database connection
+<<<<<<< HEAD
 db = pymysql.connect(host="localhost", # your host, usually localhost
+=======
+db = pymysql.connect(host="127.0.0.1", # your host, usually localhost
+>>>>>>> 8f2257c040d7aa58d66bf9f5e3d06cf42be843f6
                      user="bi2_pg4", # your username
                       passwd="blaat1234", # your password
                       db="bi2_pg4") # name of the data base
