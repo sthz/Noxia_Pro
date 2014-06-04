@@ -53,13 +53,15 @@
     function draw() {
       // create people.
       // value corresponds with the age of the person
+	  
       nodes = [
-        {id: 1, value: 15, label: 'Calcium arsenate', title: 'Calcium arsenate (Substance)'},
-        {id: 2, value: 30, label: 'C.Elegans', title: 'C. Elegeans (Organism)'},
-        {id: 3, value: 15, label: 'Cocaïne', title: 'Cocaïne (Substance)'},
-        {id: 4, value: 30, label: 'Danio rerio', title: 'Danio rerio (Organism)'},
-        {id: 5, value: 15, label: 'Furan', title: 'Furan (Substance)'},
-        {id: 6, value: 30, label: 'd. discoideum', title: 'd. discoideum (Organism)'},
+	    {id: 1, value: 30, label: 'Danio rerio', title: 'Danio rerio (Organism)'},
+	    {id: 2, value: 30, label: 'd. discoideum', title: 'd. discoideum (Organism)'},
+		{id: 3, value: 30, label: 'C.Elegans', title: 'C. Elegeans (Organism)'},
+		<% %>
+        {id: 4, value: 15, label: 'Calcium arsenate', title: 'Calcium arsenate (Substance)'},        
+        {id: 5, value: 15, label: 'Cocaïne', title: 'Cocaïne (Substance)'},        
+        {id: 6, value: 15, label: 'Furan', title: 'Furan (Substance)'},        
         {id: 7, value: 15, label: 'Sodium Chromate', title: 'Sodium Chromate (Substance)'},
         {id: 8, value: 15, label: 'Acrylamide', title: 'Acrylamide (Substance)'},
         {id: 9, value: 15, label: 'Tetraethyllead', title: 'Tetraethyllead (Substance)'},
@@ -79,8 +81,8 @@
         {from: 9, to: 10,value: 2, title: '2 Matching publications'},
         {from: 2, to: 3, value: 6, title: '6 Matching publications'},
         {from: 3, to: 1, value: 4, title: '4 Matching publications'},
-        {from: 5, to: 3, value: 7, title: 'Matching publications'},
-        {from: 2, to: 7, value: 4, title: 'Matching publications'}
+        {from: 5, to: 3, value: 7, title: '7 Matching publications'},
+        {from: 2, to: 7, value: 4, title: '4 Matching publications'}
       ];
 
       // Instantiate our graph object.
