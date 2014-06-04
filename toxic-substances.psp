@@ -102,7 +102,7 @@ passwd="blaat1234", # your password
 db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
-cursor = db.cursor()
+cursor = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
 stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALUES 			('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstact+"')")
@@ -120,16 +120,16 @@ else:
 		  cursor.execute(stat3)
 
 	   # Commit your changes in the database
-		  db.commit()
+		  dataB.commit()
 
 	 except pymysql.Error:
 		  print ("ERROR IN CONNECTION")
 	 except:
 	   # Rollback in case there is any error
-		  db.rollback()
+		  dataB.rollback()
 # disconnect from server
 cursor.close()
-db.close()
+dataB.close()
 %>
 <%=app.index(organism, substance)%>
 								    </tbody>
