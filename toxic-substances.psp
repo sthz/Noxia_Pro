@@ -103,7 +103,7 @@ db="bi2_pg4") # name of the data base
 cursor = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publications (title, authors, magazine, year, abstract) VALUES (title, ','.join(authors), source, date, abstract)")
+stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES (001, title, ','.join(authors), source, date, abstract)")
 stat2 = ("INSERT INTO organisms VALUES (Organism) ", (TERM2))
 stat3 = ("INSERT INTO substances VALUES (Substance) ", (TERM1))
 
