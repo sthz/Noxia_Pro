@@ -110,12 +110,14 @@
 <ul>
 	<li>
 	<form 
-	action="toxic-substances.psp">
+	action="graph-check.psp">
 	Add substance: <input type="text" name="Substance" value="">
 	<input type="submit" value="Submit">
 	</form>
 	</li>
 </ul>
+
+<!-- Table for publications -->
 <h2>Publications</h2>
 <table border="1" style="width:200px">
 <tr>
