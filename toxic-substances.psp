@@ -109,7 +109,7 @@ stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, a
 stat2 = ("INSERT INTO organisms VALUES (Organism) ", (TERM2))
 stat3 = ("INSERT INTO substances VALUES (Substance) ", (TERM1))
 
-if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
+if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor2) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
 	 print ('Zit al in de database')
 else:
 	 print ('Zit nog niet in de database.')
