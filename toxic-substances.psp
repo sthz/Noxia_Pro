@@ -96,7 +96,7 @@ for record in records:
 	print("")
 
 # Open database connection
-dataB=con.connect(host="cytosine.nl", # your host, usually localhost
+dataB=con.connect(host="cytosine.nl:3306", # your host, usually localhost
 user="bi2_pg4", # your username
 passwd="blaat1234", # your password
 db="bi2_pg4") # name of the data base
