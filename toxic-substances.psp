@@ -17,7 +17,7 @@
       <ul>
         <li><a href="home.html">Home</a></li>
         <li><a href="graph-check.psp">graph-check</a></li>
-        <li class="thispage"><a href="toxic-substances.psp?Organism=hoi&Substance=doei" class="thispage">substances</a></li>
+        <li class="thispage"><a href="toxic-substances.psp?Organism=&Substance=" class="thispage">substances</a></li>
         <li><a href="faq.html">faq</a></li>
         <li><a href="#">contact</a></li>
       </ul>
@@ -40,15 +40,10 @@
 								    <thead>
 								    	<tr>
 								        	<th scope="col" class="rounded-company">pubmed_ID</th>
-											<td>ID</td>
 								            <th scope="col" class="rounded-q1">author</th>
-											<td>title</td>
 								            <th scope="col" class="rounded-q2">date</th>
-											<td>date</td>
 								            <th scope="col" class="rounded-q4">titel</th>
-											<td>title</td>
 											<th scope="col" class="rounded-q4">abstract</th>
-											<td>abstract</td>
 								        </tr>
 								    </thead>
 								        <tfoot>
@@ -96,6 +91,11 @@ for record in records:
 	source= record.get("SO", "?")
 	abstract= record.get("AB", "?")
 	date= record.get("DA", "?")
+	print("title:", record.get("TI", "?"))
+    print("authors:", record.get("AU", "?"))
+    print("source:", record.get("SO", "?"))
+    print("abstract:", record.get("AB", "?"))
+    print("date:", record.get("DA", "?"))
  
 
 # Open database connection
