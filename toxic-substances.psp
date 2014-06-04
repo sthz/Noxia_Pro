@@ -88,12 +88,12 @@ records = Medline.parse(handle)
 records = list(records)
 
 for record in records:
-	print("title:", record.get("TI", "?"))
-	print("authors:", record.get("AU", "?"))
-	print("source:", record.get("SO", "?"))
-	print("abstract:", record.get("AB", "?"))
-	print("date:", record.get("DA", "?"))
-	print("")
+	title= record.get("TI", "?"))
+	authors= record.get("AU", "?"))
+	source= record.get("SO", "?"))
+	abstract= record.get("AB", "?"))
+	date= record.get("DA", "?"))
+ 
 
 # Open database connection
 dataB=con.connect(host="localhost", # your host, usually localhost
