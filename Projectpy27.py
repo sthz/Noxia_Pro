@@ -45,6 +45,7 @@ stat1 = ("INSERT INTO publication (title, authors, magazine, year, abstact) VALU
 stat2 = ("INSERT INTO organisms VALUES (%s) ", (TERM2))
 stat3 = ("INSERT INTO substances VALUES (%s) ", (TERM1))
 
+# 
 if exists(("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor) and exists(("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
      print ('Zit al in de database')
 else:
@@ -62,9 +63,7 @@ else:
           print ("ERROR IN CONNECTION")
      except:
        # Rollback in case there is any error
-          db.rollback()
-
-   
+          db.rollback()  
 
 
 # disconnect from server
