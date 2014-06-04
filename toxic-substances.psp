@@ -69,7 +69,7 @@ import MySQLdb as con
 form.has_key('Substance'and'Organism')
 TERM1 = '%s' %form['Substance']
 TERM2 = '%s'%form['Organism']
-TERMS = '((' +TERM1 + ') AND'+TERM2 +')'
+TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
 handle = Entrez.egquery(term=TERMS)
@@ -91,12 +91,7 @@ for record in records:
 	source= record.get("SO", "?")
 	abstract= record.get("AB", "?")
 	date= record.get("DA", "?")
-	print("title:", record.get("TI", "?"))
-    print("authors:", record.get("AU", "?"))
-    print("source:", record.get("SO", "?"))
-    print("abstract:", record.get("AB", "?"))
-    print("date:", record.get("DA", "?"))
- 
+	 
 
 # Open database connection
 dataB=con.connect(host="localhost", # your host, usually localhost
