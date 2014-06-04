@@ -40,7 +40,8 @@
   </style> 
   
   -->
-<% test = """
+<% test = "Test"%>
+<%=test%>
 
   <script type="text/javascript" src="/~bi2_pg4/NoxiaPro/dist/vis.js"></script>
   <script type="text/javascript">
@@ -101,10 +102,7 @@
       };
       graph = new vis.Graph(container, data, options);
     }
-  </script>"""
-%>
-
-<%=test%>
+  </script>
   
   
 
