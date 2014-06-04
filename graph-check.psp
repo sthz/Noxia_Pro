@@ -115,6 +115,12 @@
 	<input type="submit" value="Submit">
 	</form>
 	</li>
+	<li>
+	<form 
+	action="graph-check.psp">
+	<input type="submit" value="Remove current file">
+	</form>
+	</li>
 </ul>
 
 <!-- Table for publications -->
