@@ -82,8 +82,7 @@ handle = Entrez.esearch(db="pubmed", term=TERMS, retmax=463)
 record = Entrez.read(handle)
 idlist = record["IdList"]
 
-handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline",
-						   retmode="text")
+handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline", retmode="text")
 records = Medline.parse(handle)
 records = list(records)
 
