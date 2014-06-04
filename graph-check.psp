@@ -48,8 +48,7 @@
     var graph = null;\
     var DIR = 'img/soft-scraps-icons/';\
     function draw() {\
-      // create people.\
-      // value corresponds with the age of the person\	  
+  
       nodes = [\
 	    {id: 1, value: 30, label: 'Danio rerio', title: 'Danio rerio (Organism)'},\
 	    {id: 2, value: 30, label: 'd. discoideum', title: 'd. discoideum (Organism)'},\
@@ -62,8 +61,7 @@
         {id: 9, value: 15, label: 'Tetraethyllead', title: 'Tetraethyllead (Substance)'},\
         {id: 10, value: 15, label: 'Diethyl sulphate', title: 'Diethyl sulphate (Substance)'}\
       ];\
-      // create connections.\
-      // value corresponds with the amount of contact between two people\
+
       edges = [\
         {from: 2, to: 8, value: 3, title: '3 Matching publications'},\
         {from: 2, to: 9, value: 5, title: '5 Matching publications'},\
