@@ -110,7 +110,7 @@
 <ul>
 	<li>
 	<form 
-	action="graph_information_generate.py">
+	action="toxic-substances.psp">
 	Add substance: <input type="text" name="Substance" value="">
 	<input type="submit" value="Submit">
 	</form>
