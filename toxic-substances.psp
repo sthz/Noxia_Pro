@@ -100,12 +100,10 @@ passwd="blaat1234", # your password
 db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
-cursor1 = dataB.cursor()
-cursor2 = dataB.cursor()
-cursor3 = dataB.cursor()
+cursor = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES (001, title, ', '.join(authors), source, date, abstract)")
+stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES (001, title, ','.join(authors), source, date, abstract)")
 stat2 = ("INSERT INTO organisms VALUES (Organism) ", (TERM2))
 stat3 = ("INSERT INTO substances VALUES (Substance) ", (TERM1))
 
@@ -115,9 +113,9 @@ else:
 	 print ('Zit nog niet in de database.')
 	 try:
 	   # Execute the SQL command
-		  cursor1.execute(stat1)
-		  cursor2.execute(stat2)
-		  cursor3.execute(stat3)
+		  cursor.execute(stat1)
+		  cursor.execute(stat2)
+		  cursor.execute(stat3)
 
 	   # Commit your changes in the database
 		  dataB.commit()
@@ -128,9 +126,7 @@ else:
 	   # Rollback in case there is any error
 		  dataB.rollback()
 # disconnect from server
-cursor1.close()
-cursor2.close()
-cursor3.close()
+cursor.close()
 dataB.close()
 %>
 <%=app.index(organism, substance)%>
