@@ -42,7 +42,7 @@
 								        	<th scope="col" class="rounded-company">pubmed_ID</th>
 											<td>ID</td>
 								            <th scope="col" class="rounded-q1">author</th>
-											<td>authors</td>
+											<td><% print("title:", record.get("TI", "?"))%></td>
 								            <th scope="col" class="rounded-q2">date</th>
 											<td>date</td>
 								            <th scope="col" class="rounded-q4">titel</th>
