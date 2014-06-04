@@ -103,9 +103,9 @@ db="bi2_pg4") # name of the data base
 cursor = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publication (title, authors[0], magazine, year, abstract) VALUES 			('"+title+"', '"+','.join(authors)+"', '"+source+"', '"+date+"', '"+abstract+"')")
-stat2 = ("INSERT INTO organisms VALUES (%s) ", (TERM2))
-stat3 = ("INSERT INTO substances VALUES (%s) ", (TERM1))
+stat1 = ("INSERT INTO publication (title, authors[0], magazine, year, abstract) VALUES ('"+title+"', '"+authors+"', '"+source+"', '"+date+"', '"+abstract+"')")
+stat2 = ("INSERT INTO organisms VALUES (Organism) ", (TERM2))
+stat3 = ("INSERT INTO substances VALUES (Substance) ", (TERM1))
 
 if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor):
 	 print ('Zit al in de database')
@@ -171,7 +171,7 @@ dataB.close()
   
 
  
-  <footer>©Jurriaan Jansen 2014</footer>
+  <footer>©h4X0rs</footer>
 </div>
 </body>
 </html>
