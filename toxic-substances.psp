@@ -105,7 +105,7 @@ cursor2 = dataB.cursor()
 cursor3 = dataB.cursor()
 	
 # Prepare SQL query to UPDATE required records
-stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES ('"+001+'", '"+title+"', ','join.authors(), '"+source+"', '"+date+"', '"+abstact+"')")
+stat1 = ("INSERT INTO publications (pubmed_id, title, authors, magazine, year, abstract) VALUES (001, '"+title+"', ',' join.authors(), '"+source+"', '"+date+"', '"+abstact+"')")
 stat2 = ("INSERT INTO organisms VALUES (organism) ", (TERM2))
 stat3 = ("INSERT INTO substances VALUES (substance) ", (TERM1))
 
