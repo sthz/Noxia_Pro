@@ -80,9 +80,8 @@ for row in record["eGQueryResult"]:
 		 
 handle = Entrez.esearch(db="pubmed", term=TERMS, retmax=463)
 record = Entrez.read(handle)
-idlist = record["IdList"]
 
-handle = Entrez.efetch(db="pubmed", id=idlist, rettype="medline")
+handle = Entrez.efetch(db="pubmed", id=record["IdList"], rettype="medline")
 records = Medline.parse(handle)
 records = list(records)
 
