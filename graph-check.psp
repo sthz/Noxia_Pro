@@ -40,8 +40,7 @@
   </style> 
   
   -->
-<%  
- test = <h1> Test </h1>
+<%test = '<h1> Test </h1>'
 %>
 
 <%=test%>
