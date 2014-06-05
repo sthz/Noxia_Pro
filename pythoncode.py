@@ -4,7 +4,7 @@ from Bio import Entrez
 from Bio import Medline
 import MySQLdb as con
 import logging
-logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
+logging.basicConfig(filename='app.log',level=logging.DEBUG)
 
 #if form.has_key('Substance'and'Organism')
 #    TERM1 = '%s' %form['Substance']
@@ -56,16 +56,16 @@ try:
     cursor1.execute("INSERT INTO substances(substance) VALUES ('"+TERM1+"')")
     cursor1.close()
     cursor1 = dataB.cursor()
-    cursor1.execute("SELECT LAST_INSERT_ID()")
-    Term1ID = cursor1.fetchall()[0]    
-    logging.debug(Term1ID)
-    cursor1.close()
-    cursor1 = dataB.cursor()
     cursor1.execute("INSERT INTO organisms (organism) VALUES ('"+TERM2+"')")    
     cursor1.close()
     cursor1 = dataB.cursor()
-    cursor1.execute("SELECT LAST_INSERT_ID()")
-    Term2ID = cursor1.fetchall()[0] 
+    cursor1.execute("SELECT substance_id FROM substances WHERE substance = '"+TERM1+"'")
+    Term1ID = cursor1.fetchone()[0]
+    logging.debug(Term1ID)
+    cursor1.close()
+    cursor1 = dataB.cursor()
+    cursor1.execute("SELECT organism_id FROM organisms WHERE organism = '"+TERM2+"'")
+    Term2ID = cursor1.fetchone()[0]
     logging.debug(Term2ID)
     cursor1.close()
     cursor1 = dataB.cursor()
