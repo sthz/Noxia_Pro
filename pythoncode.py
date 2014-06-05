@@ -67,7 +67,7 @@ try:
     cursor1 = dataB.cursor()
     dataB.commit()
 
-    cursor1.execute("INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ('"+Term2ID+"','"+Term1ID+"','test', 'test', 'test', 'today', 'test')".__str__())
+    cursor1.execute("""INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ('"+Term2ID+"','"+Term1ID+"','test', 'test', 'test', 'today', 'test')""")
     dataB.commit()    
 
 	   # Commit your changes in the database
