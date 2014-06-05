@@ -61,8 +61,8 @@ try:
 	   # Commit your changes in the database
     dataB.commit()
 
-except con.connector.Error as err:
-    print("Something went wrong: {}".format(err))
+except MySQLdb.Error, e:
+    print("Something went wrong: {}".format(e))
 except:
 	   # Rollback in case there is any error
     dataB.rollback()
