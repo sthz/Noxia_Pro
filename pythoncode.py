@@ -57,11 +57,11 @@ try:
     dataB.commit()
     cursor2.execute("INSERT INTO organisms (organism) VALUES ('TERM2')")
     dataB.commit()
-    cursor3.executemany("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
-                    ('001','title', [','.join(authors)], 'source', 'date', 'abstract'))
+    #cursor3.executemany("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
+                    #('001','title', [','.join(authors)], 'source', 'date', 'abstract'))
 
 	   # Commit your changes in the database
-    dataB.commit()
+    #dataB.commit()
 
 except con.Error, e:
     print("Something went wrong: {}".format(e))
