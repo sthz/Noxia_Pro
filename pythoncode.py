@@ -61,7 +61,7 @@ try:
 	   # Commit your changes in the database
     dataB.commit()
 
-except pymysql.Error:
+except MySQLdb.Error:
     print ("ERROR IN CONNECTION")
 except:
 	   # Rollback in case there is any error
