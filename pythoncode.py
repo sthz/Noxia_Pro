@@ -61,7 +61,7 @@ try:
 	   # Commit your changes in the database
     dataB.commit()
 
-except MySQLdb.Error, e:
+except con.Error, e:
     print("Something went wrong: {}".format(e))
 except:
 	   # Rollback in case there is any error
