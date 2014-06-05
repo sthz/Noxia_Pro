@@ -3,6 +3,13 @@ sys.path.append('/home/bi2_pg4/public_html/NoxiaPro/')
 from Bio import Entrez
 from Bio import Medline
 import MySQLdb as con
+import logging
+logger = logging.getLogger('myapp')
+hdlr = logging.FileHandler('/var/tmp/myapp.log')
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr) 
+logger.setLevel(logging.WARNING)
 
 #if form.has_key('Substance'and'Organism')
 #    TERM1 = '%s' %form['Substance']
@@ -74,7 +81,7 @@ try:
     dataB.commit()
 
 except con.Error, e:
-    print("Something went wrong: {}".format(e))
+    logger.error(e)
 #except:
 	   # Rollback in case there is any error
     #dataB.rollback()
