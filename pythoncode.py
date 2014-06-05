@@ -4,9 +4,13 @@ from Bio import Entrez
 from Bio import Medline
 import MySQLdb as con
 
-form.has_key('Substance'and'Organism')
-TERM1 = '%s' %form['Substance']
-TERM2 = '%s'%form['Organism']
+#if form.has_key('Substance'and'Organism')
+#    TERM1 = '%s' %form['Substance']
+#    TERM2 = '%s'%form['Organism']
+#    TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+
+TERM1 = formaldehyde
+TERM2 = dictyostelium discoideum
 TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
