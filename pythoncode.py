@@ -66,12 +66,9 @@ try:
     cursor1.close()
     cursor1 = dataB.cursor()
     dataB.commit()
-    
-    cursor1.executemany("INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES (%s, %s, %s, %s, %s, %s, %s)",
-                        [
-                        (Term2ID, Term1ID, "test", "test", "test", "today", "test"),
-                        (Term2ID, Term1ID, "test", "test", "test", "tomorrow", "test"),
-                        ])   
+
+    cursor1.execute("INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ("+Term2ID+","+Term1ID+",'test', 'test', 'test', 'today', 'test')")
+    dataB.commit()    
 
 	   # Commit your changes in the database
     dataB.commit()
