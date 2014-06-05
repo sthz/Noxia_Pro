@@ -78,7 +78,7 @@ try:
     dataB.commit()
 
 except con.Error, e:
-    logging.debuge)
+    logging.debug(e)
 #except:
 	   # Rollback in case there is any error
     #dataB.rollback()
