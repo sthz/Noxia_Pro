@@ -48,20 +48,33 @@ db="bi2_pg4") # name of the data base
 
 # prepare a cursor object using cursor() method
 cursor1 = dataB.cursor()
-cursor2 = dataB.cursor()
-cursor3 = dataB.cursor()
 
 try:
 # Execute the SQL command
     cursor1.execute("INSERT INTO substances(substance) VALUES ('"+TERM1+"')")
+    cursor1.close()
+    cursor1 = dataB.cursor()
+    cursor1.execute("INSERT INTO organisms (organism) VALUES ('"+TERM2+"')")    
+    cursor1.close()
+    cursor1 = dataB.cursor()
+    cursor1.execute("SELECT substance_id FROM substances WHERE substance = '"TERM1"'")
+    Term1ID = cursor1.fetchone()    
+    cursor1.close()
+    cursor1 = dataB.cursor()
+    cursor1.execute("SELECT organism_id FROM organisms WHERE organism = '"TERM2"'")
+    Term2ID = cursor1.fetchone()    
+    cursor1.close()
+    cursor1 = dataB.cursor()
     dataB.commit()
-    cursor2.execute("INSERT INTO organisms (organism) VALUES ('"+TERM2+"')")
-    dataB.commit()
-    #cursor3.executemany("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
-                    #('001','title', [','.join(authors)], 'source', 'date', 'abstract'))
+    
+    cursor1.executemany("INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+                        [
+                        (Term2ID, Term1ID, "test", "test", "test", "today", "test"),
+                        (Term2ID, Term1ID, "test", "test", "test", "tomorrow", "test"),
+                        ])   
 
 	   # Commit your changes in the database
-    #dataB.commit()
+    dataB.commit()
 
 except con.Error, e:
     print("Something went wrong: {}".format(e))
@@ -70,6 +83,4 @@ except con.Error, e:
     #dataB.rollback()
 # disconnect from server
 cursor1.close()
-cursor2.close()
-cursor3.close()
 dataB.close()
