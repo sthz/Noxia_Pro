@@ -50,26 +50,22 @@ db="bi2_pg4") # name of the data base
 cursor1 = dataB.cursor()
 cursor2 = dataB.cursor()
 cursor3 = dataB.cursor()
-	
-if (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM2)), cursor2) and (("SELECT * FROM organisms WHERE Key =(%s) ", (TERM1)),cursor2):
-	 print ('Zit al in de database')
-else:
-	 print ('Zit nog niet in de database.')
-	 try:
-	   # Execute the SQL command
-		  cursor1.execute("INSERT INTO substances(substance_id, substance) VALUES", ('001', 'TERM1'))
-		  cursor2.execute("INSERT INTO organisms (organism, organism_id) VALUES",  ('TERM2', '001'))
-		  cursor3.execute("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
-                                  ('001','title', join.authors(), 'source', 'date', 'abstract'))
+
+try:
+# Execute the SQL command
+    cursor1.execute("INSERT INTO substances(substance_id, substance) VALUES", ('001', 'TERM1'))
+    cursor2.execute("INSERT INTO organisms (organism, organism_id) VALUES",  ('TERM2', '001'))
+    cursor3.execute("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
+                    ('001','title', [','.join(authors)], 'source', 'date', 'abstract'))
 
 	   # Commit your changes in the database
-		  dataB.commit()
+    dataB.commit()
 
-	 except pymysql.Error:
-		  print ("ERROR IN CONNECTION")
-	 except:
+except pymysql.Error:
+    print ("ERROR IN CONNECTION")
+except:
 	   # Rollback in case there is any error
-		  dataB.rollback()
+    dataB.rollback()
 # disconnect from server
 cursor1.close()
 cursor2.close()
