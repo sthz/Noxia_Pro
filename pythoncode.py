@@ -17,8 +17,8 @@ Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
 handle = Entrez.egquery(term=TERMS)
 record = Entrez.read(handle)
 for row in record["eGQueryResult"]:
-	 if row["DbName"]=="pubmed":
-		  print(row["Count"])
+    if row["DbName"]=="pubmed":
+        print(row["Count"])
 		 
 handle = Entrez.esearch(db="pubmed", term=TERMS, retmax=463)
 record = Entrez.read(handle)
@@ -28,11 +28,16 @@ records = Medline.parse(handle)
 records = list(records)
 
 for record in records:
-	title= record.get("TI", "?")
-	authors= record.get("AU", "?")
-	source= record.get("SO", "?")
-	abstract= record.get("AB", "?")
-	date= record.get("DA", "?")
+    title = []
+    authors = []
+    source = []
+    abstract = []
+    date = []
+    title.append(record.get("TI", "?"))
+    authors.append(record.get("AU", "?"))
+    source.append(record.get("SO", "?"))
+    abstract.append(record.get("AB", "?"))
+    date.append(record.get("DA", "?"))
 	 
 
 # Open database connection
