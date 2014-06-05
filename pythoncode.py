@@ -16,7 +16,7 @@ class bla():
         #    TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
         self.TERM1 = "formaldehyde"
-        self.TERM2 = "dictyostelium discoideum"
+        self.TERM2 = "Caenorhabditis elegans"
         self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
 
         Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
@@ -111,10 +111,10 @@ class bla():
             #logging.debug(i)
             cursor.close()
             cursor = self.dataB.cursor()
-            _title = self.title[i]
-            _authors = ','.join(self.authors[i])
-            magazine = self.source[i]
-            _date = self.date[i]
+            _title = self.title[i].replace("'","")
+            _authors = ','.join(self.authors[i]).replace("'","")
+            magazine = self.source[i].replace("'","")
+            _date = self.date[i].replace("'","")
             _abstract = self.abstract[i].replace("'","")
             command = 'INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ({0},{1},{2},{3},{4},{5},{6})'.format(Term2ID, Term1ID, "'"+_title+"'", "'"+_authors+"'", "'"+magazine+"'", "'"+_date+"'", "'"+_abstract+"'")
             #logging.debug(command)
