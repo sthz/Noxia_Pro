@@ -10,7 +10,7 @@ import MySQLdb as con
 #    TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 TERM1 = formaldehyde
-TERM2 = dictyostelium discoideum
+TERM2 = dictyostelium
 TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
