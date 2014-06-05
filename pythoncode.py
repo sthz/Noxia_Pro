@@ -53,9 +53,9 @@ cursor3 = dataB.cursor()
 
 try:
 # Execute the SQL command
-    cursor1.execute("INSERT INTO substances(substance_id, substance) VALUES", ('001', 'TERM1'))
-    cursor2.execute("INSERT INTO organisms (organism, organism_id) VALUES",  ('TERM2', '001'))
-    cursor3.execute("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
+    cursor1.execute("INSERT INTO substances(substance_id, substance) VALUES ('001', 'TERM1')")
+    cursor2.execute("INSERT INTO organisms (organism, organism_id) VALUES ('TERM2', '001')")
+    cursor3.executemany("INSERT INTO publications (pubmed_id, title, authors, magazine, date, abstract) VALUES",
                     ('001','title', [','.join(authors)], 'source', 'date', 'abstract'))
 
 	   # Commit your changes in the database
