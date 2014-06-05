@@ -56,7 +56,8 @@ try:
     cursor1.execute("INSERT INTO substances(substance) VALUES ('"+TERM1+"')")
     cursor1.close()
     cursor1 = dataB.cursor()
-    Term1ID = cursor1.execute("SELECT LAST_INSERT_ID()")
+    cursor1.execute("SELECT LAST_INSERT_ID()")
+    Term1ID = cursor1.fetchall()[0]    
     logging.debug(Term1ID)
     cursor1.close()
     cursor1 = dataB.cursor()
@@ -64,7 +65,7 @@ try:
     cursor1.close()
     cursor1 = dataB.cursor()
     cursor1.execute("SELECT LAST_INSERT_ID()")
-    Term2ID = cursor1.fetchone()
+    Term2ID = cursor1.fetchall()[0] 
     logging.debug(Term2ID)
     cursor1.close()
     cursor1 = dataB.cursor()
