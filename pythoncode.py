@@ -4,12 +4,7 @@ from Bio import Entrez
 from Bio import Medline
 import MySQLdb as con
 import logging
-logger = logging.getLogger('myapp')
-hdlr = logging.FileHandler('myapp.log')
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-hdlr.setFormatter(formatter)
-logger.addHandler(hdlr) 
-logger.setLevel(logging.WARNING)
+logging.basicConfig(filename='app.log',level=logging.DEBUG)
 
 #if form.has_key('Substance'and'Organism')
 #    TERM1 = '%s' %form['Substance']
@@ -66,12 +61,12 @@ try:
     cursor1 = dataB.cursor()
     cursor1.execute("SELECT substance_id FROM substances WHERE substance = '"+TERM1+"'")
     Term1ID = cursor1.fetchone()
-    logger.error(Term1ID)
+    logging.debug(Term1ID)
     cursor1.close()
     cursor1 = dataB.cursor()
     cursor1.execute("SELECT organism_id FROM organisms WHERE organism = '"+TERM2+"'")
     Term2ID = cursor1.fetchone()
-    logger.error(Term2ID)
+    logging.debug(Term2ID)
     cursor1.close()
     cursor1 = dataB.cursor()
     dataB.commit()
@@ -83,7 +78,7 @@ try:
     dataB.commit()
 
 except con.Error, e:
-    logger.error(e)
+    logging.debuge)
 #except:
 	   # Rollback in case there is any error
     #dataB.rollback()
