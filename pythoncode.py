@@ -4,7 +4,7 @@ from Bio import Entrez
 from Bio import Medline
 import MySQLdb as con
 import logging
-logging.basicConfig(filename='app.log',level=logging.DEBUG)
+logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
 
 #if form.has_key('Substance'and'Organism')
 #    TERM1 = '%s' %form['Substance']
