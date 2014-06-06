@@ -11,9 +11,9 @@ class bla():
         logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
 
         if form.has_key('Substance'and'Organism')
-            TERM1 = '%s' %form['Substance']
-            TERM2 = '%s'%form['Organism']
-            TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+            self.TERM1 = '%s' %form['Substance']
+            self.TERM2 = '%s'%form['Organism']
+            self.TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
 ##        self.TERM1 = "formaldehyde"
 ##        self.TERM2 = "Caenorhabditis elegans"
