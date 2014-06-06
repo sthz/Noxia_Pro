@@ -10,14 +10,14 @@ class bla():
     def __init__(self):
         logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
 
-        #if form.has_key('Substance'and'Organism')
-        #    TERM1 = '%s' %form['Substance']
-        #    TERM2 = '%s'%form['Organism']
-        #    TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+        if form.has_key('Substance'and'Organism')
+            TERM1 = '%s' %form['Substance']
+            TERM2 = '%s'%form['Organism']
+            TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
-        self.TERM1 = "formaldehyde"
-        self.TERM2 = "Caenorhabditis elegans"
-        self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
+##        self.TERM1 = "formaldehyde"
+##        self.TERM2 = "Caenorhabditis elegans"
+##        self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
 
         Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
         handle = Entrez.egquery(term=self.TERMS)
