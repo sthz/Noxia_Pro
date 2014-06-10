@@ -1,69 +1,3 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>NoxiaPro</title>
-<link href="styles/main.css" rel="stylesheet" type="text/css">
-<link href="styles/main.css" rel="stylesheet" type="text/css">
-<link href="styles/main.css" rel="stylesheet" type="text/css">
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/poiret-one:n4:default;poly:n4:default.js" type="text/javascript"></script>
-</head>
-
-<body>
-<div id="wrapper">
-  <header id="top">
-    <h1>Noxia Pro</h1>
-    <nav id="mainnav">
-      <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="graph-check.psp">graph-check</a></li>
-        <li class="thispage"><a href="toxic-substances.psp?Organism=&Substance=" class="thispage">substances</a></li>
-        <li><a href="faq.html">faq</a></li>
-        <li><a href="#">contact</a></li>
-      </ul>
-    </nav>
-    <article>Database</article>
-	<!-- ######### -->
-	<div id="page">
-		<div id="page-bgtop">
-			<div id="page-bgbtm">
-				<div id="page-content">
-					<div id="content">
-						<div class="post">
-							<h2 class="title"><a href="#">Substances</a></h2>
-
-								<p> Found substances, press submit once for all the results
-							<div class="entry">
-								
-
-								<table id="rounded-corner" summary="2007 Major IT Companies' Profit">
-								    <thead>
-								    	<tr>
-								        	<th scope="col" class="rounded-company">pubmed_ID</th>
-								            <th scope="col" class="rounded-q1">author</th>
-								            <th scope="col" class="rounded-q2">date</th>
-								            <th scope="col" class="rounded-q4">titel</th>
-											<th scope="col" class="rounded-q4">abstract</th>
-								        </tr>
-								    </thead>
-								        <tfoot>
-								    	<tr>
-								        	<td colspan="4" class="rounded-foot-left"><em>Results</em></td>
-								        	<td class="rounded-foot-right">&nbsp;</td>
-								        </tr>
-								    </tfoot>
-								    <tbody>
-<%
-import sys
-sys.path.append('/home/bi2_pg4/public_html/NoxiaPro/')
-import app
-from Bio import Entrez
-from Bio import Medline
-substance = form["Substance"]
-organism = form["Organism"]
-%>
-<%
-
 import sys
 sys.path.append('/home/bi2_pg4/public_html/NoxiaPro/')
 from Bio import Entrez
@@ -76,13 +10,14 @@ class bla():
     def __init__(self):
         logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
 
-		self.TERM1 = '%s' %form['Substance']
-        self.TERM2 = '%s'%form['Organism']
-        self.TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+        if form.has_key('Substance'and'Organism')
+            self.TERM1 = '%s' %form['Substance']
+            self.TERM2 = '%s'%form['Organism']
+            self.TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
 
-        #self.TERM1 = "formaldehyde"
-        #self.TERM2 = "Caenorhabditis elegans"
-        #self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
+##        self.TERM1 = "formaldehyde"
+##        self.TERM2 = "Caenorhabditis elegans"
+##        self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
 
         Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
         handle = Entrez.egquery(term=self.TERMS)
@@ -173,6 +108,7 @@ class bla():
         Term2ID = cursor.fetchone()[0]
         i=0
         while(i<len(self.title)):
+            #logging.debug(i)
             cursor.close()
             cursor = self.dataB.cursor()
             _title = self.title[i].replace("'","")
@@ -181,6 +117,7 @@ class bla():
             _date = self.date[i].replace("'","")
             _abstract = self.abstract[i].replace("'","")
             command = 'INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ({0},{1},{2},{3},{4},{5},{6})'.format(Term2ID, Term1ID, "'"+_title+"'", "'"+_authors+"'", "'"+magazine+"'", "'"+_date+"'", "'"+_abstract+"'")
+            #logging.debug(command)
             cursor.execute(command)
             i+=1
 
@@ -190,51 +127,3 @@ def main():
 main()
     
     
-
-%>
-<%=app.index(organism, substance)%>
-								    </tbody>
-								</table>
-								</p>
-							</div>
-						</div>
-						<div style="clear: both;">&nbsp;</div>
-					</div>
-					<!-- end #content -->
-					<div id="sidebar">
-						<ul>
-							<li>
-								<h2>How to</h2>
-								<p>In section parameters below this you must add your parameters to find proteïns.
-								 	In case of no results change your parameters.</p>
-							</li>
-							<li>
-								<h2>Parameters</h2>
-								<ul>
-									<li>
-										<form 
-										action="toxic-substances.psp" method="post">
-										Substance: <input type="text" name="Substance" value="">
-										Organism: <input type="text" name="Organism" value="">
-										<input type="submit" value="Submit">
-										</form>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-					<!-- end #sidebar -->
-				</div>
-				<div style="clear: both;">&nbsp;</div>
-			</div>
-		</div>
-	</div>
-	<!-- ######### -->
-  </header>
-  
-
- 
-  <footer>©h4X0rs</footer>
-</div>
-</body>
-</html>
