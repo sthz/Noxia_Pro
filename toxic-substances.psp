@@ -76,9 +76,13 @@ class bla():
     def __init__(self):
         logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
 
-        self.TERM1 = "formaldehyde"
-        self.TERM2 = "Caenorhabditis elegans"
-        self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
+		self.TERM1 = '%s' %form['Substance']
+        self.TERM2 = '%s'%form['Organism']
+        self.TERMS = ('(' +TERM1 + ')' + 'AND'+ '('+TERM2 + ')')
+
+        #self.TERM1 = "formaldehyde"
+        #self.TERM2 = "Caenorhabditis elegans"
+        #self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
 
         Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
         handle = Entrez.egquery(term=self.TERMS)
@@ -169,7 +173,6 @@ class bla():
         Term2ID = cursor.fetchone()[0]
         i=0
         while(i<len(self.title)):
-            #logging.debug(i)
             cursor.close()
             cursor = self.dataB.cursor()
             _title = self.title[i].replace("'","")
@@ -178,7 +181,6 @@ class bla():
             _date = self.date[i].replace("'","")
             _abstract = self.abstract[i].replace("'","")
             command = 'INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ({0},{1},{2},{3},{4},{5},{6})'.format(Term2ID, Term1ID, "'"+_title+"'", "'"+_authors+"'", "'"+magazine+"'", "'"+_date+"'", "'"+_abstract+"'")
-            #logging.debug(command)
             cursor.execute(command)
             i+=1
 
