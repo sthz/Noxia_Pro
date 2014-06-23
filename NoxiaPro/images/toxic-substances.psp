@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NoxiaPro</title>
+<link href="styles/main.css" rel="stylesheet" type="text/css">
+<link href="styles/main.css" rel="stylesheet" type="text/css">
+<link href="styles/main.css" rel="stylesheet" type="text/css">
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.--><script>var __adobewebfontsappname__="dreamweaver"</script><script src="http://use.edgefonts.net/poiret-one:n4:default;poly:n4:default.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div id="wrapper">
+  <header id="top">
+    <h1>Noxia Pro</h1>
+    <nav id="mainnav">
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="graph-check.psp">graph-check</a></li>
+        <li class="thispage"><a href="toxic-substances.psp?Organism=0&Substance=0" class="thispage">substances</a></li>
+        <li><a href="faq.html">faq</a></li>
+        <li><a href="#">contact</a></li>
+      </ul>
+    </nav>
+    <article>Database</article>
+	<!-- ######### -->
+	<div id="page">
+		<div id="page-bgtop">
+			<div id="page-bgbtm">
+				<div id="page-content">
+					<div id="content">
+						<div class="post">
+							<h2 class="title"><a href="#">Substances</a></h2>
+
+								<p> Found substances, press submit once for all the results
+							<div class="entry">
+								
+
+								<table id="rounded-corner" summary="2007 Major IT Companies' Profit">
+								    <thead>
+								    	<tr>
+								        	<th scope="col" class="rounded-company">pubmed_ID</th>
+								            <th scope="col" class="rounded-q1">author</th>
+								            <th scope="col" class="rounded-q2">date</th>
+								            <th scope="col" class="rounded-q4">titel</th>
+											<th scope="col" class="rounded-q4">abstract</th>
+								        </tr>
+								    </thead>
+								        <tfoot>
+								    	<tr>
+								        	<td colspan="4" class="rounded-foot-left"><em>Results</em></td>
+								        	<td class="rounded-foot-right">&nbsp;</td>
+								        </tr>
+								    </tfoot>
+								    <tbody>
+
+								    </tbody>
+								</table>
+								</p>
+							</div>
+						</div>
+						<div style="clear: both;">&nbsp;</div>
+					</div>
+					<!-- end #content -->
+					<div id="sidebar">
+						<ul>
+							<li>
+								<h2>How to</h2>
+								<p>In section parameters below this you must add your parameters to find proteïns.
+								 	In case of no results change your parameters.</p>
+							</li>
+							<li>
+								<h2>Parameters</h2>
+								<ul>
+									<li>
+										<form 
+										action="toxic-substances.psp" method="post">
+										Substance: <input type="text" name="Substance" value="">
+										Organism: <input type="text" name="Organism" value="">
+										<input type="submit" onclick="{
+<%
+import sys
+# sys.path.end('/home/bi2_pg4/public_html/NoxiaPro/')
+import app 
+Substance = form["Substance"]
+Organism = form["Organism"]
+from Bio import Entrez
+from Bio import Medline
+import MySQLdb as con
+import logging
+
+class bla():
+
+	def __init__(self):
+		logging.basicConfig(filename='/home/bi2_pg4/public_html/python/app.log',level=logging.DEBUG)
+		
+		if form.has_key('Substance'and'Organism'):
+			self.TERM1 = '%s' %form['Substance']
+			self.TERM2 = '%s'%form['Organism']
+			self.TERMS = ('(' +self.TERM1 + ')' + 'AND'+ '('+self.TERM2 + ')')
+			
+			logging.debug(TERM1)
+			logging.debug(TERM2)
+			logging.debug(TERMS)
+
+		Entrez.email = "A.N.Other@example.com"     # Always tell NCBI who you are
+		handle = Entrez.egquery(term=self.TERMS)
+		record = Entrez.read(handle)
+		handle = Entrez.esearch(db="pubmed", term=self.TERMS, retmax=463)
+		record = Entrez.read(handle)
+		handle = Entrez.efetch(db="pubmed", id=record["IdList"], rettype="medline")
+		records = Medline.parse(handle)
+		records = list(records)
+
+		self.title = []
+		self.authors = []
+		self.source = []
+		self.abstract = []
+		self.date = []
+
+		for record in records:
+			self.title.append(record.get("TI", "?"))
+			self.authors.append(record.get("AU", "?"))
+			self.source.append(record.get("SO", "?"))
+			self.abstract.append(record.get("AB", "?"))
+			self.date.append(record.get("DA", "?"))   
+				 
+		# Open database connection
+		self.dataB=con.connect(host="localhost", # your host, usually localhost
+		user="bi2_pg4", # your username
+		passwd="blaat1234", # your password
+		db="bi2_pg4") # name of the data base
+
+		# prepare a cursor object using cursor() method
+		cursor1 = self.dataB.cursor()
+
+		try:
+		# Execute the SQL command
+			cursor1.execute("SELECT substance_id FROM substances WHERE substance = '"+self.TERM1+"'")
+			substanceExists = cursor1.rowcount > 0
+			cursor1.close()
+			cursor1 = self.dataB.cursor()
+			cursor1.execute("SELECT organism_id FROM organisms WHERE organism = '"+self.TERM2+"'")
+			organismExists = cursor1.rowcount > 0
+			cursor1.close()
+
+			if not substanceExists and not organismExists:
+				self.insertSubstance()
+				self.dataB.commit()
+				self.insertOrganism()
+				self.dataB.commit()
+				self.insertPublications()
+				self.dataB.commit()
+			elif not substanceExists:
+				self.insertSubstance() 
+				self.dataB.commit()       
+				self.insertPublications()
+				self.dataB.commit()
+			elif not organismExists:
+				self.insertOrganism()
+				self.dataB.commit()
+				self.insertPublications()
+				self.dataB.commit()
+				
+		except con.Error, e:
+			logging.debug(e)
+		#except:
+				   # Rollback in case there is any error
+			#dataB.rollback()
+		# disconnect from server
+		cursor1.close()
+		self.dataB.close()
+
+	def insertSubstance(self):
+		cursor = self.dataB.cursor()
+		cursor.execute("INSERT INTO substances(substance) VALUES ('"+self.TERM1+"')")
+		cursor.close()
+
+	def insertOrganism(self):
+		cursor = self.dataB.cursor()
+		cursor.execute("INSERT INTO organisms (organism) VALUES ('"+self.TERM2+"')")  
+		cursor.close()
+
+	def insertPublications(self):
+		cursor = self.dataB.cursor()
+		cursor.execute("SELECT substance_id FROM substances WHERE substance = '"+self.TERM1+"'")
+		Term1ID = cursor.fetchone()[0]
+		cursor.close()
+		cursor = self.dataB.cursor()
+		cursor.execute("SELECT organism_id FROM organisms WHERE organism = '"+self.TERM2+"'")
+		Term2ID = cursor.fetchone()[0]
+		i=0
+		while(i<len(self.title)):
+			#logging.debug(i)
+			cursor.close()
+			cursor = self.dataB.cursor()
+			_title = self.title[i].replace("'","")
+			_authors = ','.join(self.authors[i]).replace("'","")
+			magazine = self.source[i].replace("'","")
+			_date = self.date[i].replace("'","")
+			_abstract = self.abstract[i].replace("'","")
+			command = 'INSERT INTO publications (organism, substance, title, authors, magazine, date, abstract) VALUES ({0},{1},{2},{3},{4},{5},{6})'.format(Term2ID, Term1ID, "'"+_title+"'", "'"+_authors+"'", "'"+magazine+"'", "'"+_date+"'", "'"+_abstract+"'")
+			#logging.debug(command)
+			cursor.execute(command)
+			i+=1
+		
+	
+b = bla()
+%>}" value="submit">
+<%=app.index(Organism, Substance)%>
+										</form>
+										
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<!-- end #sidebar -->
+				</div>
+				<div style="clear: both;">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+	<!-- ######### -->
+  </header>
+  
+
+ 
+  <footer>©h4X0rs</footer>
+</div>
+</body>
+</html>

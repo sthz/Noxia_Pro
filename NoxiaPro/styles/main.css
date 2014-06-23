@@ -1,0 +1,144 @@
+@charset "utf-8";
+body {
+	margin: 0px;
+	color: #151515;
+	font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, sans-serif;
+	background-color: #EFF5F8;
+}
+#wrapper {
+	min-width: 740px;
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+	bottom: 0%;
+	top: 0%;
+	width: 1000px;
+	height: 740px;
+}
+#top {
+    overflow: hidden;
+}
+#hero img {
+	max-width: 100%;
+	left: auto;
+	right: auto;
+	bottom: auto;
+	top: auto;
+	max-height: 100%;
+}
+h1, h2 {
+	color: #10BB68;
+	font-family: poiret-one;
+	font-style: normal;
+	font-weight: 400;
+}
+
+
+h1 {
+	font-size: 72px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	text-align: center;
+	height: auto;
+}
+h2 {
+	margin-top: 0.5em;
+	font-size: 30px;
+}
+#main {
+	width: 58%;
+	margin-left: 2%;
+	float: left;
+}
+#sidebar {
+	width: 34%;
+	margin-left: 4%;
+	float: left;
+}
+
+
+
+
+figure {
+	display: block;
+	width: 420px;
+}
+figure img {
+	padding: 10px;
+	-webkit-box-shadow: 1px 1px 15px #999999;
+	box-shadow: 1px 1px 15px #999999;
+}
+
+figcaption {
+	font-size: 0.875em;
+	font-weight: bold;
+	text-align: center;
+	display: block;
+	margin-top: 0.5em;
+}
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+.floatleft {
+	float: left;
+	margin-left: 0px;
+	margin-right: 10px;
+}
+.floatright {
+	float: right;
+	margin-left: 10px;
+	margin-right: 0px;
+}
+footer {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 2%;
+	background-color: #10BB68;
+	color: #FFFFFF;
+	clear: left;
+}
+a {
+	font-weight: bold;
+	text-decoration: none;
+}
+a:link {
+	color: #FF6600;
+}
+a:visited {
+	color: #FF944C;
+
+}
+a:hover, a:active, a:focus {
+	color: #7F3300;
+	text-decoration: underline;
+}
+#mainnav ul {
+	list-style-type: none;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+#mainnav a {
+	width: 20%;
+	display: block;
+	float: left;
+	text-transform: uppercase;
+	text-align: center;
+	background-color: #393939;
+	color: #FFFFFF;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#mainnav a:hover, #mainnav a:active, #mainnav a:focus, #mainnav a.thispage {
+	background-color: #0FBC68;
+	text-decoration: none;
+}
+
+/* ####################################### */
